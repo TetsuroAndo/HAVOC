@@ -1,6 +1,6 @@
-# CTF Automator
+# HAVOC
 
-CTF Automator is an advanced system for automatically analyzing and solving Capture The Flag (CTF) challenges. It uses a combination of specialized diagnostic tools, analyzers, exploiters, and LLM-powered agents to identify vulnerabilities and extract flags.
+HAVOC is an advanced system for automatically analyzing and solving Capture The Flag (CTF) challenges. It uses a combination of specialized diagnostic tools, analyzers, exploiters, and LLM-powered agents to identify vulnerabilities and extract flags.
 
 ## Features
 
@@ -22,8 +22,8 @@ The system follows a layered architecture:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ctf-automator.git
-cd ctf-automator
+git clone https://github.com/yourusername/havoc.git
+cd havoc
 
 # Install dependencies
 pip install -r requirements.txt
@@ -36,13 +36,13 @@ pip install -r requirements.txt
 
 ```bash
 # Basic usage
-python scripts/run_ctf_automator.py --input path/to/challenge
+python scripts/run_havoc.py --input path/to/challenge
 
 # Specify challenge type
-python scripts/run_ctf_automator.py --input path/to/challenge --type binary
+python scripts/run_havoc.py --input path/to/challenge --type binary
 
 # Use specific LLM provider
-python scripts/run_ctf_automator.py --input path/to/challenge --llm-provider openai
+python scripts/run_havoc.py --input path/to/challenge --llm-provider openai
 ```
 
 ## Configuration
