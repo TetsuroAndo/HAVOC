@@ -13,6 +13,7 @@ HAVOC is an advanced system for automatically analyzing and solving Capture The 
 ## Architecture
 
 The system follows a layered architecture:
+
 1. **Diagnostic Layer**: Low-cost initial analysis
 2. **Analysis Layer**: In-depth vulnerability assessment
 3. **Exploitation Layer**: Automated flag extraction
@@ -48,10 +49,7 @@ python scripts/run_havoc.py --input path/to/challenge --llm-provider openai
 ## Configuration
 
 Edit the configuration files in the `config/` directory to customize the behavior of the system:
+
 - `settings.yaml`: General settings
 - `llm_config.yaml`: LLM provider settings
 - `modules_config/`: Category-specific settings
-
-## License
-
-MIT
