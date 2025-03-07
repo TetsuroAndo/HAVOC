@@ -1,0 +1,55 @@
+# LLM Provider Configuration
+
+# OpenAI (ChatGPT) configuration
+openai:
+  model: "gpt-4-turbo"
+  api_base: "https://api.openai.com/v1"
+  # API key should be set as environment variable: OPENAI_API_KEY
+  request_timeout: 60
+  max_retries: 3
+  streaming: false
+  system_prompt: "You are an expert in cybersecurity and CTF challenges. Your goal is to analyze and solve CTF challenges."
+
+# Anthropic (Claude) configuration
+claude:
+  model: "claude-3-opus-20240229"
+  api_base: "https://api.anthropic.com/v1"
+  # API key should be set as environment variable: ANTHROPIC_API_KEY
+  request_timeout: 60
+  max_retries: 3
+  streaming: false
+  system_prompt: "You are an expert in cybersecurity and CTF challenges. Your goal is to analyze and solve CTF challenges."
+
+# Google (Gemini) configuration
+gemini:
+  model: "gemini-pro"
+  api_base: "https://generativelanguage.googleapis.com/v1"
+  # API key should be set as environment variable: GOOGLE_API_KEY
+  request_timeout: 60
+  max_retries: 3
+  streaming: false
+  system_prompt: "You are an expert in cybersecurity and CTF challenges. Your goal is to analyze and solve CTF challenges."
+
+# LLM usage strategy
+strategy:
+  # Which provider to use for which task
+  task_allocation:
+    classification: "openai"
+    binary_analysis: "claude"
+    web_analysis: "openai"
+    crypto_analysis: "gemini"
+    forensic_analysis: "claude"
+    exploitation: "claude"
+    
+  # Fallback strategy if primary provider fails
+  fallback_order:
+    - "openai"
+    - "claude"
+    - "gemini"
+    
+  # Cost optimization
+  cost_optimization:
+    enabled: true
+    prefer_cheaper_for_simple_tasks: true
+    use_cached_responses: true
+    cache_ttl: 3600  # seconds

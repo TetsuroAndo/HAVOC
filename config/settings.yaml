@@ -1,0 +1,45 @@
+# Global settings for CTF Automator
+
+# General settings
+general:
+  debug: false
+  log_level: INFO
+  workspace_dir: "../data/workspace"
+  reports_dir: "../data/reports"
+  timeout: 300  # seconds
+
+# Challenge classification settings
+classifier:
+  confidence_threshold: 0.7
+  use_llm_for_classification: true
+
+# Flag validation settings
+flag_validator:
+  patterns:
+    - "flag\\{[^}]+\\}"
+    - "CTF\\{[^}]+\\}"
+    - "FLAG\\{[^}]+\\}"
+    - "ctf\\{[^}]+\\}"
+  custom_pattern: null
+
+# Report settings
+reports:
+  format: json
+  save_all: true
+  compress_old: true
+  max_reports: 100
+
+# LLM settings
+llm:
+  default_provider: openai
+  temperature: 0.2
+  max_tokens: 2000
+  retry_attempts: 3
+  timeout: 30
+
+# Agent settings
+agent:
+  autonomous_mode: true
+  human_confirmation_threshold: 0.8
+  max_iterations: 10
+  thinking_depth: 3

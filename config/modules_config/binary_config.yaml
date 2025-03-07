@@ -1,0 +1,83 @@
+# Binary Module Configuration
+
+# Diagnostic settings
+diagnostic:
+  tools:
+    - file
+    - checksec
+    - strings
+    - objdump
+    - readelf
+  check_protections: true
+  identify_functions: true
+  extract_strings: true
+  max_strings: 100
+  timeout: 30
+
+# Analyzer settings
+analyzer:
+  static_analysis:
+    enabled: true
+    use_ghidra: true
+    use_radare2: true
+    use_angr: true
+    max_functions: 50
+    interesting_functions:
+      - "main"
+      - "vuln"
+      - "win"
+      - "shell"
+      - "flag"
+      - "get_flag"
+      - "print_flag"
+  
+  dynamic_analysis:
+    enabled: true
+    use_gdb: true
+    use_strace: true
+    use_ltrace: true
+    timeout: 60
+    max_instructions: 10000
+    detect_syscalls:
+      - "execve"
+      - "open"
+      - "read"
+      - "write"
+    memory_analysis: true
+    
+  vulnerability_detection:
+    buffer_overflow: true
+    format_string: true
+    use_after_free: true
+    integer_overflow: true
+    race_condition: false  # Often requires manual analysis
+
+# Exploiter settings
+exploiter:
+  techniques:
+    - buffer_overflow
+    - format_string
+    - rop_chain
+    - ret2libc
+    - shellcode
+  
+  rop:
+    gadget_finder: "ROPgadget"
+    max_gadgets: 5000
+    chain_generation: true
+    
+  shellcode:
+    architecture: "auto"  # auto, x86, x64, arm, etc.
+    use_pwntools: true
+    avoid_bad_chars: true
+    
+  protection_bypass:
+    aslr: true
+    nx: true
+    pie: true
+    canary: true
+    
+  execution:
+    timeout: 60
+    retry_count: 3
+    capture_output: true
